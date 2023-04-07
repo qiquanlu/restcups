@@ -18,13 +18,16 @@ jobs:
         run: |
           sudo apt-get update -q
           sudo apt-get install -qqy build-essential software-properties-common pkg-config wget libpcsclite-dev
-      - name: Build darwin
+      - name: Build
         run: |
           make -j4 build-darwin-amd64 build-linux-amd64 build-darwin-arm64 build-linux-arm64
       - uses: actions/upload-artifact@v3
         with:
           name: build
           path: build
+      - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "build"
 
   # release-test:
   #   runs-on: ubuntu-latest
