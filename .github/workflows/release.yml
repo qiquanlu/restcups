@@ -1,0 +1,36 @@
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build and release
+        uses: docker://golang
+        with:
+          args: bash -c "go build && go test && go mod tidy && go install && go mod vendor && go mod verify && go run cmd/main.go && go clean -testcache && echo 'Build succeeded!'"
+      - name: Create release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: Release ${{ github.run_number }}
+          body: |
+            Changes in this release:
+            * Your change here
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        with:
+          asset_path: ./path/to/binary
+          asset_name: binary-name
+          asset_content_type: application/octet-stream
+          release_id: ${{ steps.create_release.outputs.release_id }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
