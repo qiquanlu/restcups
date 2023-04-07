@@ -26,8 +26,8 @@ jobs:
           name: build
           path: build
       - uses: ncipollo/release-action@v1
-      with:
-        artifacts: "build"
+        with:
+          artifacts: "build"
 
   # release-test:
   #   runs-on: ubuntu-latest
