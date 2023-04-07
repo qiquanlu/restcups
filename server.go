@@ -43,6 +43,9 @@ func main() {
 	flag.Parse()
 
 	r := chi.NewRouter()
+	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "ok")
+	})
 
 	// GET route to list all printers
 	r.Get("/printers", func(w http.ResponseWriter, r *http.Request) {
