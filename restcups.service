@@ -4,7 +4,7 @@ Description=REST wrapper for CUPS printer
 [Service]
 Type=simple
 Restart=always
-ExecStart=/usr/bin/restcups --port 8080
+ExecStart=/usr/bin/restcups --port 8888
 
 [Install]
 WantedBy=multi-user.target

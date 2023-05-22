@@ -34,11 +34,11 @@ This endpoint returns a list of available printers on the CUPS server.
 This endpoint accepts binary data as input and prints it to the specified printer with the specified options. The following query parameters are supported:
 
 #### Query Parameters
-|Parameter | Type |Description| Default Value|
-|----------|------|-----------|--------------|
-|`printer` | String |The printer name.| required |
-|`copies` | Integer |The number of copies to print.| 1 |
-|`raw` | Boolean |A boolean value indicating whether to print the file in "raw" format.| false |
+| Parameter | Type    | Description                                                           | Default Value |
+| --------- | ------- | --------------------------------------------------------------------- | ------------- |
+| `printer` | String  | The printer name.                                                     | required      |
+| `copies`  | Integer | The number of copies to print.                                        | 1             |
+| `raw`     | Boolean | A boolean value indicating whether to print the file in "raw" format. | false         |
 
 
 #### Request Body
@@ -126,7 +126,7 @@ To get a list of available printers using the Print REST Server, you can use a t
 
 
 ```
-curl "http://localhost:8080/printers"
+curl "http://localhost:8888/printers"
 ```
 
 This will return a JSON object with a list of available printers.
